@@ -1,5 +1,4 @@
 ﻿using SensorProcessing.DataAccess.Enums;
-using System;
 
 namespace SensorProcessing.DataAccess.Models
 {
@@ -11,5 +10,7 @@ namespace SensorProcessing.DataAccess.Models
         public string LastName    { get; set; }
         public string Password    { get; set; }
         public UserRole UserRole  { get; set; } = UserRole.Guest;
+
+        public ICollection<Monitoring> Monitorings { get; set; } = new List<Monitoring>();
     }
 }

@@ -3,11 +3,13 @@ using SensorProcessing.DataAccess.Enums;
 
 namespace SensorProcessing.DataAccess.Models
 {
-    public class SensorData
+    public class Sensor
     {
         public Guid Id               { get; set; }
         public SensorType SensorType { get; set; }
-        public DateTime DateTime     { get; set; }
+        public DateTime Timestamp    { get; set; }
         public double   Value        { get; set; }
+        
+        public Monitoring Monitoring { get; set; } = null!;
     }
 }
