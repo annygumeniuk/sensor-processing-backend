@@ -1,5 +1,4 @@
-﻿using System;
-using SensorProcessing.DataAccess.Enums;
+﻿using SensorProcessing.DataAccess.Enums;
 
 namespace SensorProcessing.DataAccess.Models
 {
@@ -9,7 +8,8 @@ namespace SensorProcessing.DataAccess.Models
         public SensorType SensorType { get; set; }
         public DateTime Timestamp    { get; set; }
         public double   Value        { get; set; }
-        
+
+        public Guid MonitoringId     { get; set; }
         public Monitoring Monitoring { get; set; } = null!;
     }
 }

@@ -10,12 +10,15 @@ namespace SensorProcessing.DataAccess.Configurations
         {
             builder.HasKey(s => s.Id);
 
+            builder.Property(s => s.Timestamp)
+                   .IsRequired();
+
             builder.HasOne(s => s.Monitoring)
                    .WithMany(m => m.SensorData)
-                   .HasForeignKey(s => s.Monitoring.Id)
+                   .HasForeignKey(s => s.MonitoringId)
                    .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasIndex(s => new { s.Monitoring.Id, s.Timestamp });
+            builder.HasIndex(s => new { s.MonitoringId, s.Timestamp });
             builder.HasIndex(s => s.Timestamp);
         }
     }
