@@ -15,6 +15,9 @@ builder.Services.AddDbContext<SensorProcessingDbContext>(options =>
         builder.Configuration.GetConnectionString("Default")
     ));
 
+
+builder.Services.AddScoped(typeof(SensorProcessing.DataAccess.Repository.IEntityRepository<>), typeof(SensorProcessing.DataAccess.Repository.EntityRepository<>));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
