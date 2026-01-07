@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorProcessing.WebApi", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorProcessing.DataAccess", "SensorProcessing.DataAccess\SensorProcessing.DataAccess.csproj", "{61B05683-1813-4AFD-A02C-4F72095ED63D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorProcessing.BusinessLogic", "SensorProcessing.BusinessLogic\SensorProcessing.BusinessLogic.csproj", "{A880BB70-55A8-4307-AECB-2B821860DA9F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{61B05683-1813-4AFD-A02C-4F72095ED63D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61B05683-1813-4AFD-A02C-4F72095ED63D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61B05683-1813-4AFD-A02C-4F72095ED63D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A880BB70-55A8-4307-AECB-2B821860DA9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A880BB70-55A8-4307-AECB-2B821860DA9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A880BB70-55A8-4307-AECB-2B821860DA9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A880BB70-55A8-4307-AECB-2B821860DA9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

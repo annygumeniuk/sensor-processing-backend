@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SensorProcessing.BusinessLogic\SensorProcessing.BusinessLogic.csproj" />
     <ProjectReference Include="..\SensorProcessing.DataAccess\SensorProcessing.DataAccess.csproj" />
   </ItemGroup>
 
