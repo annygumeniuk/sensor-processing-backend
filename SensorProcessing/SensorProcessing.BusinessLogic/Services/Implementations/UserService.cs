@@ -7,7 +7,7 @@ namespace SensorProcessing.BusinessLogic.Services.Implementations
 {
     public class UserService : IUserService
     {
-        IEntityRepository<User> _userRepository;
+        private readonly IEntityRepository<User> _userRepository;
 
         public UserService(IEntityRepository<User> userRepository)
         {

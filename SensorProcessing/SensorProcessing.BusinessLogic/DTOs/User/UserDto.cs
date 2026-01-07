@@ -1,7 +1,8 @@
 ﻿namespace SensorProcessing.BusinessLogic.DTOs.User
 {
     public class UserDto
-    {     
+    {    
+        public Guid   Id        { get; set; }
         public string FirstName { get; set; }
         public string LastName  { get; set; }
         public string Email     { get; set; }
@@ -12,6 +13,7 @@
     {
         public static UserDto ToDto(this DataAccess.Models.User user) => new UserDto
         {
+            Id        = user.Id,
             FirstName = user.FirstName,
             LastName  = user.LastName,
             Email     = user.Email,
