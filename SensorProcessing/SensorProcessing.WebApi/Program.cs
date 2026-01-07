@@ -1,15 +1,20 @@
 using Microsoft.EntityFrameworkCore;
-using SensorProcessing.DataAccess;
-using SensorProcessing.BusinessLogic.Services.Interfaces;
 using SensorProcessing.BusinessLogic.Services.Implementations;
+using SensorProcessing.BusinessLogic.Services.Interfaces;
+using SensorProcessing.DataAccess;
 using SensorProcessing.DataAccess.Repository;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options => 
+{
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+});
 
 builder.Services.AddDbContext<SensorProcessingDbContext>(options =>
     options.UseNpgsql(
