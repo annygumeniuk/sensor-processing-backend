@@ -4,7 +4,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using SensorProcessing.DataAccess.Models;
 
 namespace SensorProcessing.Auth.Services
 {
@@ -44,4 +43,3 @@ namespace SensorProcessing.Auth.Services
         }
     }
 }
-
