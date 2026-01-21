@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SensorProcessing.BusinessLogic.DTOs.User;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SensorProcessing.WebApi.Controllers
 {
@@ -22,6 +23,7 @@ namespace SensorProcessing.WebApi.Controllers
         /// </summary>
         /// <returns>A list of users.</returns>
         /// <response code="200">Returns the list of users.</response>
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {

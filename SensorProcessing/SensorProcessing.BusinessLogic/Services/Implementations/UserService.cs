@@ -58,5 +58,14 @@ namespace SensorProcessing.BusinessLogic.Services.Implementations
             
             return true;
         }
+
+        public async Task<User?> GetByEmailAsync(string email)
+        {
+            var users = await _userRepository.GetAllAsync();
+            var user = users.FirstOrDefault(u => u.Email == email);
+            if (user == null) return null;
+            
+            return user;
+        }
     }
 } 
