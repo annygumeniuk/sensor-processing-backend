@@ -7,7 +7,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-
+using SensorProcessing.Auth.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +27,8 @@ builder.Services.AddDbContext<SensorProcessingDbContext>(options =>
 
 builder.Services.AddScoped(typeof(IEntityRepository<>), typeof(EntityRepository<>));
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opt =>
@@ -44,7 +46,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
     
-    builder.Services.AddAuthorization();
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -56,6 +58,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
