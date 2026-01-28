@@ -30,5 +30,22 @@ namespace SensorProcessing.Auth.Services
                 User = user.ToDto()
             };
         }
+
+        public async Task<AuthResultDto> RegisterAsync(CreateUpdateUserDto dto)
+        {
+            var existingUser = await _userService.GetByEmailAsync(dto.Email);
+            if (existingUser != null)
+                throw new InvalidOperationException("User with this email already exists.");
+
+            var newUserDto = await _userService.CreateUserAsync(dto);
+            var user = newUserDto.ToModel();
+            var token = _jwtTokenGenerator.Generate(user);
+
+            return new AuthResultDto
+            {
+                Token = token,
+                User = user.ToDto()
+            };
+        }
     }
 }
