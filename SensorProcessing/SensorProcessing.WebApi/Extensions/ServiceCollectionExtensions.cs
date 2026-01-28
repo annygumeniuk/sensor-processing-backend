@@ -14,6 +14,7 @@ namespace SensorProcessing.WebApi.Extensions
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
 
             return services;
         }

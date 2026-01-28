@@ -9,7 +9,8 @@ builder.Services
     .AddSwaggerWithJwt()
     .AddDatabase(builder.Configuration)
     .AddApplicationServices()
-    .AddJwtAuthentication(builder.Configuration);
+    .AddJwtAuthentication(builder.Configuration)
+    .AddHttpContextAccessor();
 
 var app = builder.Build();
 
