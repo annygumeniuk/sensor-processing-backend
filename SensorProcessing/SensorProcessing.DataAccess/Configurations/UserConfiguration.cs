@@ -14,7 +14,7 @@ namespace SensorProcessing.DataAccess.Configurations
             builder.Property(u => u.Email).IsRequired();
             builder.Property(u => u.FirstName).IsRequired();
             builder.Property(u => u.LastName).IsRequired();
-            builder.Property(u => u.Password).IsRequired();
+            builder.Property(u => u.PasswordHash).IsRequired();
         }
     }
 }

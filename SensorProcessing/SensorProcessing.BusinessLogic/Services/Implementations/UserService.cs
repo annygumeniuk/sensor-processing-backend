@@ -1,4 +1,5 @@
-﻿using SensorProcessing.BusinessLogic.DTOs.User;
+﻿using Microsoft.Extensions.Logging;
+using SensorProcessing.BusinessLogic.DTOs.User;
 using SensorProcessing.BusinessLogic.Services.Interfaces;
 using SensorProcessing.DataAccess.Models;
 using SensorProcessing.DataAccess.Repository;
@@ -8,10 +9,12 @@ namespace SensorProcessing.BusinessLogic.Services.Implementations
     public class UserService : IUserService
     {
         private readonly IEntityRepository<User> _userRepository;
+        private readonly ICurrentUserService _currentUserService;
 
-        public UserService(IEntityRepository<User> userRepository)
+        public UserService(IEntityRepository<User> userRepository, ICurrentUserService currentUserService)
         {
             _userRepository = userRepository;
+            _currentUserService = currentUserService;
         }
 
         public async Task<IEnumerable<UserDto>> GetAllUsersAsync()
@@ -38,6 +41,11 @@ namespace SensorProcessing.BusinessLogic.Services.Implementations
 
         public async Task<UserDto?> UpdateUserAsync(Guid id, CreateUpdateUserDto userDto)
         {
+            if (!HasRights(id))
+            {
+                throw new UnauthorizedAccessException("You are not authorized to update this user.");
+            }
+
             var user = await _userRepository.GetByIdAsync(id);
             if (user == null) return null;
             
@@ -52,11 +60,31 @@ namespace SensorProcessing.BusinessLogic.Services.Implementations
 
         public async Task<bool> DeleteUserAsync(Guid id)
         {
+            if (!HasRights(id))
+            {
+                throw new UnauthorizedAccessException("You are not authorized to delete this user.");
+            }
+
             var user = await _userRepository.GetByIdAsync(id);
             if (user == null) return false;
             await _userRepository.Delete(id);
             
             return true;
+        }
+
+        public async Task<User?> GetByEmailAsync(string email)
+        {
+            var users = await _userRepository.GetAllAsync();
+            var user = users.FirstOrDefault(u => u.Email == email);
+            if (user == null) return null;
+            
+            return user;
+        }
+
+        private bool HasRights(Guid id)
+        {
+            var currUserId = _currentUserService.GetUserId();
+            return currUserId != null && currUserId == id;            
         }
     }
 } 

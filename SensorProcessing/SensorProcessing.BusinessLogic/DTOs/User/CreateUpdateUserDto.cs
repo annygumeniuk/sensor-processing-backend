@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using BCrypt.Net;
 
 namespace SensorProcessing.BusinessLogic.DTOs.User
 {
@@ -24,7 +25,7 @@ namespace SensorProcessing.BusinessLogic.DTOs.User
             FirstName = dto.FirstName,
             LastName  = dto.LastName,
             Email     = dto.Email,
-            Password  = dto.Password
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password)
         };
 
         public static void UpdateModel(this CreateUpdateUserDto dto, DataAccess.Models.User user)
@@ -32,7 +33,7 @@ namespace SensorProcessing.BusinessLogic.DTOs.User
             user.FirstName = dto.FirstName;
             user.LastName  = dto.LastName;
             user.Email     = dto.Email;
-            user.Password  = dto.Password;
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password);
         }
     }
 }

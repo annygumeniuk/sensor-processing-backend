@@ -19,5 +19,14 @@
             Email     = user.Email,
             Role      = user.UserRole.ToString()
         };
+
+        public static DataAccess.Models.User ToModel(this UserDto dto) => new DataAccess.Models.User
+        {
+            Id        = dto.Id,
+            FirstName = dto.FirstName,
+            LastName  = dto.LastName,
+            Email     = dto.Email,
+            UserRole  = Enum.Parse<DataAccess.Enums.UserRole>(dto.Role)
+        };
     }
 }

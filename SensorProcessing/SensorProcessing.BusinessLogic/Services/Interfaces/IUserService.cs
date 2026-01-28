@@ -1,4 +1,5 @@
 ﻿using SensorProcessing.BusinessLogic.DTOs.User;
+using SensorProcessing.DataAccess.Models;
 
 namespace SensorProcessing.BusinessLogic.Services.Interfaces
 {
@@ -9,5 +10,6 @@ namespace SensorProcessing.BusinessLogic.Services.Interfaces
         Task<UserDto> CreateUserAsync(CreateUpdateUserDto userDto);
         Task<UserDto?> UpdateUserAsync(Guid id, CreateUpdateUserDto userDto);
         Task<bool> DeleteUserAsync(Guid id);
+        Task<User?> GetByEmailAsync(string email);
     }
 }
