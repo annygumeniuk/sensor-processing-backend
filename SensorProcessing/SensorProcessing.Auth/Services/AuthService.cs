@@ -47,5 +47,11 @@ namespace SensorProcessing.Auth.Services
                 User = user.ToDto()
             };
         }
+
+        public async Task LogoutAsync(Guid userId)
+        {
+            // Implement logout logic if needed (e.g., token invalidation)
+            await Task.CompletedTask;
+        }
     }
 }
