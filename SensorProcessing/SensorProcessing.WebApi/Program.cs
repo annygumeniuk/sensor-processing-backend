@@ -1,9 +1,14 @@
+using SensorProcessing.OpenApiData.Services.Implementations;
+using SensorProcessing.OpenApiData.Services.Interfaces;
 using SensorProcessing.WebApi.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<IWeatherService, WeatherService>();
 
 builder.Services
     .AddSwaggerWithJwt()
