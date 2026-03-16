@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
+using SensorProcessing.OpenApiData.Models;
 using SensorProcessing.OpenApiData.Services.Interfaces;
 using System;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace SensorProcessing.OpenApiData.Services.Implementations
@@ -17,17 +19,21 @@ namespace SensorProcessing.OpenApiData.Services.Implementations
             _configuration = configuration;
         }
 
-        public async Task<string> GetWeatherAsync(string city)
+        public async Task<WeatherResponse> GetWeatherAsync(string city)
         {
-           var apiKey = _configuration["OpenWeather:ApiKey"];
+            var apiKey = _configuration["OpenWeather:ApiKey"];
+            var url = $"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={apiKey}&units=metric";
 
-           var url = $"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={apiKey}&units=metric";
+            var response = await _httpClient.GetAsync(url);
+            response.EnsureSuccessStatusCode();
 
-           var response = await _httpClient.GetAsync(url);
+            var json = await response.Content.ReadAsStringAsync();
 
-           response.EnsureSuccessStatusCode();
+            var openWeather = JsonSerializer.Deserialize<OpenWeatherResponse>(
+                json,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-           return await response.Content.ReadAsStringAsync();
+            return WeatherMapper.Map(openWeather);
         }
     }
 }

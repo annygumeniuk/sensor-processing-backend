@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using SensorProcessing.OpenApiData.Models;
+using System.Threading.Tasks;
 
 namespace SensorProcessing.OpenApiData.Services.Interfaces
 {
     public interface IWeatherService
     {
-        Task<string> GetWeatherAsync(string city);
+        Task<WeatherResponse> GetWeatherAsync(string city);
     }
 }
