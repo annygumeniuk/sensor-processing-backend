@@ -1,7 +1,12 @@
 using SensorProcessing.Auth.Services;
-using SensorProcessing.BusinessLogic.Services.Interfaces;
 using SensorProcessing.BusinessLogic.Services.Implementations;
+using SensorProcessing.BusinessLogic.Services.Interfaces;
 using SensorProcessing.DataAccess.Repository;
+using SensorProcessing.Devices.Abstraction;
+using SensorProcessing.Devices.Serial;
+using SensorProcessing.OpenApiData.Services.Implementations;
+using SensorProcessing.OpenApiData.Services.Interfaces;
+using SensorProcessing.WebApi.Services;
 
 namespace SensorProcessing.WebApi.Extensions
 {
@@ -15,6 +20,11 @@ namespace SensorProcessing.WebApi.Extensions
             services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
+            services.AddScoped<IWeatherService, WeatherService>();
+
+            services.AddSingleton<IDataTransport>(new SerialTransport("COM5"));
+            services.AddSingleton<SensorService>();
+            services.AddHostedService<SensorBackgroundService>();
 
             return services;
         }

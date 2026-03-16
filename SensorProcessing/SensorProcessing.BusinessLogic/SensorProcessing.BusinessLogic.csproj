@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SensorProcessing.DataAccess\SensorProcessing.DataAccess.csproj" />
+    <ProjectReference Include="..\SensorProcessing.Devices\SensorProcessing.Devices.csproj" />
   </ItemGroup>
 
   <ItemGroup>
