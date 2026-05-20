@@ -26,6 +26,7 @@ namespace SensorProcessing.WebApi.Extensions
 
             services.AddSingleton<IDataTransport>(new SerialTransport("COM5"));
             services.AddSingleton<SensorService>();
+            services.AddSingleton<DataSourceManager>();
             //services.AddHostedService<SensorBackgroundService>();
 
             return services;
