@@ -25,5 +25,6 @@
     <ProjectReference Include="..\SensorProcessing.BusinessLogic\SensorProcessing.BusinessLogic.csproj" />
     <ProjectReference Include="..\SensorProcessing.Auth\SensorProcessing.Auth.csproj" />
     <ProjectReference Include="..\SensorProcessing.OpenApiData\SensorProcessing.OpenApiData.csproj" />
+    <ProjectReference Include="..\SensorProcessing.Forecasting\SensorProcessing.Forecasting.csproj" />
   </ItemGroup>
 </Project>

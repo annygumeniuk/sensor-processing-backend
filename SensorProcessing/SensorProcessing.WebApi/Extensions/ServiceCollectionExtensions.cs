@@ -4,6 +4,7 @@ using SensorProcessing.BusinessLogic.Services.Interfaces;
 using SensorProcessing.DataAccess.Repository;
 using SensorProcessing.Devices.Abstraction;
 using SensorProcessing.Devices.Serial;
+using SensorProcessing.Forecasting.Services;
 using SensorProcessing.OpenApiData.Services.Implementations;
 using SensorProcessing.OpenApiData.Services.Interfaces;
 using SensorProcessing.WebApi.Services;
@@ -21,10 +22,11 @@ namespace SensorProcessing.WebApi.Extensions
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddScoped<IWeatherService, WeatherService>();
+            services.AddScoped<IForecastingService, ForecastingService>();
 
             services.AddSingleton<IDataTransport>(new SerialTransport("COM5"));
             services.AddSingleton<SensorService>();
-            services.AddHostedService<SensorBackgroundService>();
+            //services.AddHostedService<SensorBackgroundService>();
 
             return services;
         }
